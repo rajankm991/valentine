@@ -434,27 +434,27 @@
   </div>
   <div class="gallery">
     <figure class="frame">
-      <div class="art"><img src="https://images.unsplash.com/photo-1518704601994-6a9b5d3c6d83?auto=format&fit=crop&w=800&h=800&q=80" alt="Close-up of a red rose" loading="lazy"></div>
+      <div class="art"><img src="RA1.jpeg" alt="Close-up of a red rose" loading="lazy"></div>
       <figcaption>your smile, the good kind of trouble</figcaption>
     </figure>
     <figure class="frame">
-      <div class="art"><img src="https://images.unsplash.com/photo-1519307212971-dd9561667ffb?auto=format&fit=crop&w=800&h=800&q=80" alt="Couple silhouette at sunset" loading="lazy"></div>
+      <div class="art"><img src="RA2.jpeg" alt="Couple silhouette at sunset" loading="lazy"></div>
       <figcaption>the road we're still walking</figcaption>
     </figure>
     <figure class="frame">
-      <div class="art"><img src="https://images.unsplash.com/photo-1763713512968-fef8805cc6cf?auto=format&fit=crop&w=800&h=800&q=80" alt="Two hands held closely" loading="lazy"></div>
+      <div class="art"><img src="RA3.jpeg" alt="Two hands held closely" loading="lazy"></div>
       <figcaption>how your hand always finds mine</figcaption>
     </figure>
     <figure class="frame">
-      <div class="art"><img src="https://images.unsplash.com/photo-1746822132410-0aa489a964f2?auto=format&fit=crop&w=800&h=800&q=80" alt="A blooming pink peony" loading="lazy"></div>
+      <div class="art"><img src="RA4.jpeg" alt="A blooming pink peony" loading="lazy"></div>
       <figcaption>every reason, in one shape</figcaption>
     </figure>
     <figure class="frame">
-      <div class="art"><img src="https://images.unsplash.com/photo-1709291105216-50606aa9bf4c?auto=format&fit=crop&w=800&h=800&q=80" alt="A red rose in bloom" loading="lazy"></div>
+      <div class="art"><img src="RA5.jpeg" alt="A red rose in bloom" loading="lazy"></div>
       <figcaption>the night we stayed up talking</figcaption>
     </figure>
     <figure class="frame">
-      <div class="art"><img src="https://images.unsplash.com/photo-1755029553373-87246d245ec1?auto=format&fit=crop&w=800&h=800&q=80" alt="A golden sunset sky" loading="lazy"></div>
+      <div class="art"><img src="RA6.jpeg" alt="A golden sunset sky" loading="lazy"></div>
       <figcaption>a quiet evening, just us</figcaption>
     </figure>
   </div>
@@ -546,7 +546,7 @@
   </div>
   <p class="envelope-hint" id="envelopeHint">tap the envelope to open</p>
   <div class="letter-paper" id="letterPaper">
-    <p>मेरी अलका,</p>
+    <p>मेरी प्रिय अर्धांगिनी अल्का,</p>
     <p>पता नहीं ये मैसेज टाइप करके भेज देता, पर दिल किया कि तुम्हारे लिए कुछ अलग बनाऊं, कुछ ऐसा जो थोड़ी देर टिके।</p>
     <p>तुम्हें पता है, तुम्हारे साथ हर आम सा दिन भी खास लगने लगता है। तुम्हारी मुस्कान देखकर सारी थकान भूल जाता हूँ। तुम्हारा साथ मेरे लिए सबसे बड़ी खुशी है — न कोई शिकायत, न कोई शर्त, बस तुम हो तो सब कुछ ठीक लगता है।</p>
     <p>तुम मेरी ज़िंदगी की सबसे प्यारी बात हो। तुम्हारी छोटी-छोटी बातें, तुम्हारा हंसना, तुम्हारा गुस्सा भी — सब कुछ मुझे तुम्हारे और करीब ले आता है।</p>
@@ -687,6 +687,40 @@
     document.body.appendChild(fh);
     setTimeout(()=> fh.remove(), 1700);
   });
+</script>
+
+<audio autoplay id="myAudio" preload="auto" loop>
+    <source src="RA.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+const audio = document.getElementById("myAudio");
+
+async function playMusic() {
+    try {
+        await audio.play();
+        console.log("Music started");
+    } catch (err) {
+        console.error("Couldn't play:", err);
+    }
+
+    document.removeEventListener("click", playMusic);
+    document.removeEventListener("touchstart", playMusic);
+}
+
+document.addEventListener("click", playMusic);
+document.addEventListener("touchstart", playMusic);
+</script>
+
+<script>
+  // Triggers playback as soon as the user interacts with the page
+  document.addEventListener('click', () => {
+    const audio = document.getElementById('myAudio');
+    audio.play().catch(error => {
+      console.log("Playback prevented by browser policies:", error);
+    });
+  }, { once: true }); // Runs only on the very first click
 </script>
 
 </body>
