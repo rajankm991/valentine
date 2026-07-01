@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Forever 💍❤️</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Baloo+2:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+/* =====================
+   SAME BASE AS INDEX
+===================== */
+body{
+    margin:0;
+    height:80svh;
+    overflow:hidden;
+    font-family:'Baloo 2', cursive;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffd1dc,#fc6076);
+    background-size:400% 400%;
+    animation:bgMove 14s ease infinite;
+}
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* =====================
+   FLOATING HEARTS
+===================== */
+.heart{
+    position:fixed;
+    font-size:18px;
+    opacity:0.25;
+    animation:float 10s linear infinite;
+}
+@keyframes float{
+    from{transform:translateY(110vh)}
+    to{transform:translateY(-10vh)}
+}
+
+/* =====================
+   PHONE FRAME
+===================== */
+.phone{
+    width:100%;
+    max-width:420px;
+    height:100svh;
+    padding:20px;
+    text-align:center;
+    position:relative;
+    z-index:5;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+/* =====================
+   TEXT
+===================== */
+h1{
+    font-family:'Pacifico',cursive;
+    font-size:clamp(36px,8vw,48px);
+    margin-bottom:10px;
+}
+
+.ring{
+    font-size:64px;
+    margin:10px 0;
+}
+
+/* =====================
+   RUNNING ALBUM
+===================== */
+.album{
+    width:100%;
+    overflow:hidden;
+    margin:14px 0;
+}
+.album-track{
+    display:flex;
+    width:max-content;
+    animation:runAlbum 18s linear infinite;
+}
+.album img{
+    width:120px;
+    height:160px;
+    object-fit:cover;
+    border-radius:16px;
+    margin:0 8px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+@keyframes runAlbum{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+}
+
+/* =====================
+   HANDWRITING
+===================== */
+#letter{
+    font-family:'Pacifico',cursive;
+    font-size:clamp(18px,4.5vw,22px);
+    line-height:1.7;
+    min-height:160px;
+}
+
+/* =====================
+   BUTTON
+===================== */
+button{
+    margin:22px auto 0;
+    padding:15px 38px;
+    font-size:19px;
+    font-family:'Baloo 2', cursive;
+    border:none;
+    border-radius:40px;
+    background:#ff5fa2;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(255,95,162,0.5);
+    display:none;
+}
+
+/* =====================
+   FINAL YES SCREEN
+===================== */
+.final{
+    position:fixed;
+    inset:0;
+    display:none;
+    z-index:20;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffd1dc,#fc6076);
+    background-size:400% 400%;
+    animation:bgMove 14s ease infinite;
+}
+.final h1{
+    font-family:'Pacifico',cursive;
+    font-size:clamp(40px,9vw,56px);
+}
+.final p{
+    font-size:22px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING HEARTS -->
+<script>
+for(let i=0;i<24;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.textContent="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDelay=Math.random()*10+"s";
+    document.body.appendChild(h);
+}
+</script>
+
+<div class="phone" id="main">
+    <h1>💖 Alka ❤️</h1>
+    <div class="ring">💍</div>
+
+    <!-- RUNNING PHOTO ALBUM -->
+    <div class="album">
+        <div class="album-track">
+            <img src="photo1.jpg">
+            <img src="photo2.jpg">
+            <img src="photo3.jpg">
+            <!-- duplicate for seamless loop -->
+            <img src="photo1.jpg">
+            <img src="photo2.jpg">
+            <img src="photo3.jpg">
+        </div>
+    </div>
+
+    <div id="letter"></div>
+
+    <button id="yesForever" onclick="celebrate()">YES, FOREVER 💕</button>
+</div>
+
+<!-- FINAL SCREEN -->
+<div class="final" id="final">
+    <h1>I Love You 💖</h1>
+    <div class="album">
+        <div class="album-track">
+            <!--img src="photo4.jpg"-->
+               </div>
+    </div>
+    <!--h1>Happy Propose Day My Love 💖</h1-->
+    <p>Forever starts now 💍.....✨</p>
+</div>
+
+<script>
+const letter=document.getElementById("letter");
+const yesForever=document.getElementById("yesForever");
+const main=document.getElementById("main");
+const final=document.getElementById("final");
+
+/* HANDWRITING EFFECT */
+const lines=[
+"My Dearest Alka,",
+"Every moment with you feels like magic.",
+"You are my love, my home, my forever.",
+"Will you stay with me for a lifetime? 💖"
+];
+
+let l=0,c=0;
+function type(){
+    if(l>=lines.length) return;
+    if(c===0){
+        const d=document.createElement("div");
+        d.id="l"+l;
+        letter.appendChild(d);
+    }
+    const el=document.getElementById("l"+l);
+    el.textContent+=lines[l][c++];
+    if(c<lines[l].length){
+        setTimeout(type,10);   // 🔥 faster typing (was 60)
+    }else{
+        c=0; l++;
+        setTimeout(type,200); // 🔥 shorter pause (was 800)
+        if(l===lines.length){
+            yesForever.style.display="block";
+        }
+    }
+}
+setTimeout(type,400); // 🔥 quicker start (was 1200)
+
+
+/* YES → FINAL */
+function celebrate(){
+    main.style.display="none";
+    final.style.display="flex";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will You Be Mine? ❤️</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Baloo+2:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    height:100svh;
+    overflow:hidden;
+    font-family:'Baloo 2', cursive;
+    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ffd1dc,#ff9a9e);
+    background-size:400% 400%;
+    animation:bgMove 12s ease infinite;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* Floating hearts */
+.heart-bg span{
+    position:fixed;
+    bottom:-10vh;
+    font-size:18px;
+    opacity:.3;
+    animation:float 10s linear infinite;
+}
+@keyframes float{
+    to{transform:translateY(-120vh)}
+}
+
+/* Glass Card */
+.card{
+    width:92%;
+    max-width:420px;
+    padding:32px 24px;
+    border-radius:26px;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(14px);
+    text-align:center;
+    color:white;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    animation:pop 1s ease;
+}
+@keyframes pop{
+    from{transform:scale(.8);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+h1{
+    font-family:'Pacifico',cursive;
+    font-size:42px;
+    margin:10px 0;
+}
+
+.subtitle{
+    font-size:20px;
+    margin-bottom:18px;
+}
+
+#emoji{
+    font-size:70px;
+    animation:beat 1.4s infinite;
+}
+@keyframes beat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.15)}
+}
+
+.buttons{
+    height:220px;
+    position:relative;
+    margin-top:10px;
+}
+
+button{
+    padding:16px 42px;
+    font-size:20px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    font-family:'Baloo 2', cursive;
+    position:absolute;
+    transition:.3s;
+}
+
+#yes{
+    background:#ff4f9a;
+    color:white;
+    left:50%;
+    bottom:20px;
+    transform:translateX(-50%);
+    box-shadow:0 0 25px rgba(255,79,154,.8);
+    animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+    0%,100%{box-shadow:0 0 20px rgba(255,79,154,.7)}
+    50%{box-shadow:0 0 35px rgba(255,79,154,1)}
+}
+
+#no{
+    background:white;
+    color:#ff4f9a;
+    left:50%;
+    top:30px;
+    transform:translateX(-50%);
+}
+
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+.popup-box{
+    background:white;
+    color:#ff4f9a;
+    padding:28px;
+    border-radius:24px;
+    width:85%;
+    max-width:320px;
+    text-align:center;
+    font-family:'Pacifico',cursive;
+    animation:pop .5s;
+}
+
+.popup-box button{
+    margin-top:16px;
+    background:#ff4f9a;
+    color:white;
+    border:none;
+    padding:14px 36px;
+    border-radius:30px;
+    font-size:18px;
+}
+
+.fade-out{
+    animation:fade 1s forwards;
+}
+@keyframes fade{
+    to{opacity:0;transform:scale(1.1)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Music -->
+<audio id="music" src="music.mp3" loop></audio>
+
+<div class="heart-bg" id="heartBg"></div>
+
+<div class="card" id="page">
+    <h1>Hey Alka ❤️</h1>
+    <h1>My Love 💖</h1>
+     <!--h1>Happy Propose Day My Love 💖</h1>
+    <div class="subtitle">Will you be my Valentine?</div-->
+           <div class="subtitle">Choose any...</div-->
+    <div id="emoji">🥺</div>
+
+    <div class="buttons">
+        <button id="yes">YES 💕</button>
+        <button id="no">NO 🙈</button>
+    </div>
+</div>
+
+<div class="popup" id="popup">
+    <div class="popup-box">
+        Something magical awaits 💖<br>
+        Ready to continue? ✨
+        <br><br>
+        <button onclick="goNext()">Continue 💍</button>
+    </div>
+</div>
+
+<script>
+/* hearts */
+for(let i=0;i<30;i++){
+    const h=document.createElement("span");
+    h.textContent="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDelay=Math.random()*10+"s";
+    document.getElementById("heartBg").appendChild(h);
+}
+
+const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const emoji=document.getElementById("emoji");
+const popup=document.getElementById("popup");
+const music=document.getElementById("music");
+
+let n=0;
+const emo=["😅","😏","😂","😈","😱"];
+
+no.onclick=()=>{
+    emoji.textContent=emo[n]||"😜";
+    n++;
+    no.style.left=Math.random()*70+"%";
+    no.style.top=Math.random()*150+"px";
+};
+
+yes.onclick=()=>{
+    music.play();
+    popup.style.display="flex";
+};
+
+function goNext(){
+    page.classList.add("fade-out");
+    setTimeout(()=>location.href="surprise.html",1000);
+}
+</script>
+
+</body>
+</html>
